@@ -1,13 +1,13 @@
 const siteMetadata = {
-  title: 'Personal Website',
+  title: 'Jia Rong Wu Portfolio',
   author: 'Jia Rong Wu',
   headerTitle: 'Jia Rong Wu',
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'My personal website.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://jiarongwu.vercel.app/',
   siteRepo: 'https://github.com/JRWu/jiarongwu',
-  siteLogo: '/static/images/logo.png',
+  siteLogo: '/static/images/avatar.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'jwu424@gmail.com',

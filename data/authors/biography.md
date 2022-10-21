@@ -11,11 +11,11 @@ googlescholar: https://scholar.google.ca/citations?user=dqj1T1EAAAAJ&hl=en&oi=ao
 ---
 
 <h2>About Me</h2>
-My current title is a Solutions Architect, but fundamentally I am a software developer and academic at heart. I have been writing software for over a decade, starting with ____, transitioning to R, and most recently GoLang. Throughout my career I've worked for startups, academic institutions, and enterprises - wearing multiple hats in the process.
+My current title is a Solutions Architect, but fundamentally I am a software developer and academic at heart. I have been writing software for over a decade starting with Java, analyzing data with R, and most recently GoLang. Throughout my career I've worked for startups, academic institutions, and enterprises - wearing multiple hats in the process.
 
-I'm an alumni of the University of Waterloo (MSc) and University of Western Ontario (BMSc). During my tenure in academia, I've worked as a research assistant and as a teachers assistant. My research interests include compositional data analysis (for high throughput omics data), peptide identification and quantification (for tandem mass spectrometry data), and applications of both supervised and unsupervised learning in spectrum prediction. Check out my blog for some of my more informal research! If you're looking for my peer reviewed publications, feel free to check out my [Google Scholar](https://scholar.google.ca/citations?user=dqj1T1EAAAAJ&hl=en&oi=ao) :).
+I'm an alumni of the University of Waterloo (MSc) and University of Western Ontario (BMSc). During my tenure in academia, I was a research assistant as well a teachers assistant. My research interests include compositional data analysis (for high throughput omics data), peptide identification and quantification (for tandem mass spectrometry data), and applications of both supervised and unsupervised learning in spectrum prediction. Check out my blog for some of my more informal research! If you're looking for my peer reviewed publications, take a look at my [Google Scholar](https://scholar.google.ca/citations?user=dqj1T1EAAAAJ&hl=en&oi=ao) :).
 
-Some of the courses I've administered include:  
+Some of the courses I've administered:  
 [CS135 Functional Programming](https://student.cs.uwaterloo.ca/~cs135/)  
 [CS231 Algorithmic Problem Solving](https://student.cs.uwaterloo.ca/~cs231/index.shtml)  
 [CS246 Object-Oriented Programming](https://student.cs.uwaterloo.ca/~cs246/F22/index.shtml)  

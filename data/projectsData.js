@@ -8,7 +8,7 @@ const projectsData = [
   {
     title: 'AUSPRE',
     description: `AUtomatic SPeech REcognition. A startup which leveraged machine learning and artificial neural networks to automatically transcribe speech-to-text, and perform speaker diarization.  `,
-    imgSrc: '/static/images/auspre.png',
+    imgSrc: '/static/images/AUSPRE.png',
     href: '/blog/auspre',
   },
 ]

@@ -1,9 +1,57 @@
 ---
 title: 'DIA Data Reading'
 date: '2022-09-01'
-tags: ['proteomics', 'academia', 'research']
-draft: true
+tags: ['proteomics', 'academia', 'research', 'deep learning', 'python', 'tensorflow']
+draft: false
 summary: 'Proteomics research trial and error.'
 ---
 
-# DIA Data Reading
+# Applications of AI In Proteomics
+
+**Proteins** are one of the fundamental building blocks for living organisms. **Proteomics** is the field in which they are researched and studied. In this blog- we'll explore the union of computer science and biology and see how we can leverage deep neural networks in the study of proteins!
+
+DIA Data Reading refers to a software suite I wrote to support the research efforts of peptide identification and quantification during my tenure at the University of Waterloo. For the purposes of this writeup, I'll focus more on the applications of neural networks for modeling a peptide score function. I will link the corresponding paper after it has been peer reviewed and published.
+
+Tandem mass spectrometry is one of the various methods utilized in proteomics to analyze proteins and their corresponding peptides. Data generated from mass spectrometers operating in **Data Independent Acquisiton** (DIA) mode is often noisy and contaminated with multiplexed peptides as illustrated with **Figure 1**. While proteotypic spectra can often be analyzed by the deltas in mass-to-charge (m/z) ratios, the convoluted spectra are often difficult to understand without the assistance of complex models. **Figure 1** is a scatterplot of all MS2 fragment ions acquired by fragmenting a set of precursors between a given m/z range. Represented by the coloured lines are fragment ions predicted to originate form a single peptide precursor. It becomes easy to see how it is difficult to extract meaningful information from these slices of data.
+
+|                                                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Image alt="Team" src="/static/images/dia-data-reading-blog/dia_data.png" width={800} height={650} />                                                                                         |
+| **Figure 1**: DIA Data represented in a 3D Scatterplot. Each unique coloured line represents a set of grouped MS-product ions. Each individual point is a centroided point from the RAW data. |
+| If you wish to see the source code for how I built this 3D modeling tool, please see my GitHub repository [DIA Visualization](https://github.com/JRWu/dia_visualization/)                     |
+
+Enter deep neural networks. Often thought of as black magic as the underlying weights and paths are difficult if not impossible to interpret, NNs have been used as a tool to model nonlinear relationships across multiple fields of study. Consider the fact that each tuple of points (coloured lines) representing the peptide in **Figure 1** has three distinct dimensions. Points have an Intensity, a mass-to-charge ratio, and a specific retention time. We can draw a parallel between this data representation and a pixel in an image, which also contains 3 dimensions: x-position, y-position and rgb colour channel. Thus we can model this peptide representation in a 25 x 40 x 30 tensor. The breakdown of the tensor is as follows:
+
+**25:**
+
+<li>20 length vector representing the 1-hot encoding of a character residue </li>
+<li>2 representing the b & b+1 ions respectively </li>
+<li>2 representing the y & y+1 ions respectively </li>
+<li>1 representing the precursor intensity if found </li>
+**40:**
+<li>40 length vector representing a peptide up to 40 residues in length </li>
+**30:**
+<li>30 length vector representing the retention time range a peptide can elute over </li>
+
+This tensor is primarily used to generate a score of how well a given peptide representation matches against the background noise. Instead of mapping co-eluting groups of MS-product ions of a peptide and scoring these with a deterministic function like cross-correlation, we can model these with a neural network. Mass spectrometers gather data over a period of time referred to as retention time. Given a peptide, for a given charge state (z), we can deterministically search m/z isolation windows across the entire retention time period in order to obtain a subset of times and windows in which a peptide might elute from the column. For a given peptide, we would have a set of matches similar to **Figure 1** across multiple separate retention times.
+
+|                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------- |
+| <Image alt="Team" src="/static/images/dia-data-reading-blog/architecture_with_background.png" width={954} height={532} /> |
+| **Figure 2**: Neural Architecture leveraged to train a model for scoring peptide spectrum matches.                        |
+|                                                                                                                           |
+
+Convolutional neural networks are thought to be powerful in considering localized temporal features. Intuitively, they take advantage of patterns in the data through convolution operations. In theory, since each co-eluting group of peptides has 3 dimensions, we perform convolutions across the retention time dimension aiming to capture the "shape" of each co-eluting MS-product ion. For the background noise, we subsample 2000 of the most intense peaks across bins that are 1 m/z in size. This allows us to model the signal to noise ratio of each peptide spectrum match. As referenced in **Figure 2** the background noise is a simple fully connected layer while the peptide spectrum match tensor is comprised of a few stacked Conv2D and MaxPool2D layers. The heterogeneous inputs are then concatenated, before feeding into a dense, dropout and ultimately softmax layer. Softmax allows us to generate probabilities that may be thought of as a surrogate for a score. Ultimately, we take the argmax of the set of isolation windows, and this yields us the isolation window and retention time where it is most likely that the peptide eluted.
+
+Training data was gathered from published open source and peer-reviewed datasets from [ProteomeXChange](http://www.proteomexchange.org/). Through the published datasets, we took all the peptides that were scored at \<1\% FDR along with their respective retention times. Given this time, and the published charge (z), we were able to extract the tensor representation of the peptide spectrum match from the published RAW data. From this method, hundreds of thousands of ground truth samples were extracted and used as a training set, where we utilized cross validation training in order to build our resultant model. For the decoy (negative) samples, we generated decoy peptides from the DeBruijn method which is more robust than simply randomizing peptide strings.
+
+<h2>In Summary</h2>
+TLDR: Data constituting a peptide can be represented across 3 dimensions; intensity, mass-to-charge ratio
+(m/z) and retention time. Naturally one can observe the similarity between this representation to pixels
+that represent an image, in which there are also 3 dimensions; X position, Y position and colour channel
+(RGB). By storing the feature engineered peptides in a 3D tensor, I was able to leverage a convolutional
+neural network (CNN) to measure the "goodness of fit" for a given peptide across multiple retention times
+and isolation windows. I trained the model using data extracted from peer reviewed and published open
+source datasets, and utilized the resultant model to predict how well proteins matched relative to background
+noise. The resultant predictions were not only competitive but superior to existing published deterministic
+methods.

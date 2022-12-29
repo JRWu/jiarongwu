@@ -10,7 +10,7 @@ github: https://github.com/JRWu
 googlescholar: https://scholar.google.ca/citations?user=dqj1T1EAAAAJ&hl=en&oi=ao
 ---
 
-<h2>I'm Jia. </h2>
-<h3>Solutions Architect by trade, professional student by training.</h3>
-Welcome to my portfolio! (Under Construction)  
+<h2>I'm Jia.</h2> 
+<h3>Solutions Architect and Academic.</h3>
+Welcome to my portfolio!  
 Here you'll find a collection of my research, development and thoughts.

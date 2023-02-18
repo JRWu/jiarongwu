@@ -99,9 +99,9 @@ keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
 [alt_names]
 DNS.1 = tyk.local
-DNS.2 = dashboard.tyk.local
-DNS.3 = gateway.tyk.local
-DNS.4 = httpbin.tyk.local
+DNS.2 = dashboard.tyk.localhost
+DNS.3 = gateway.tyk.localhost
+DNS.4 = httpbin.tyk.localhost
 DNS.5 = \*.tyk.local
 DNS.6 = tyk-dashboard
 DNS.7 = tyk-gateway
@@ -750,4 +750,4 @@ We have all the components configured so now we can serve application(s) through
   ```
 </details>
 
-Well done! We've taken an existing service [http://httpbin.org](http://httpbin.org) and now we've managed it through Tyk! You can imagine that instead of `httpbin.org`, we can substitute it with a service running locally either by IP address or an existing public service that is hosted on a cloud provider such as AWS, GCP or Azure!
+Well done! We've taken an existing service [http://httpbin.org](http://httpbin.org) and now we've managed it through Tyk at [https://httpbin.tyk.localhost](https://httpbin.tyk.localhost). You can imagine that instead of `httpbin.org`, we can substitute it with a service running locally either by IP address or an existing public service that is hosted on a cloud provider such as AWS, GCP or Azure!

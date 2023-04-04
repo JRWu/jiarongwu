@@ -10,11 +10,11 @@ summary: 'Enabling Transport Layer Security (TLS) for your services with Tyk.'
 
 In present day, TLS or Transport Layer security is a modern pillar supporting the underlying communication between devices over the internet. If you've visted any modern website, chances are you're exchanging packets through the TLS protocol. Today, I'll be taking you through the end to end process of generating a self signed certificate, and launching a instance of the Tyk-Gateway to protect your data in-flight with TLS! We will be using host-based routing through Tyk and adding TLS to an existing service!
 
-|                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------- |
-| <Image alt="Team" src="/static/images/tech-at-tyk-blog/api_gateway.png" width={946} height={413} />            |
-| **Figure 1**: An API Gateway fronting the request(s) from API Consumers before proxying them to Microservices. |
-|                                                                                                                |
+|                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Image alt="Team" src="/static/images/tech-at-tyk-blog/tyk_secure_tls.png" width={946} height={413} />                                                                                            |
+| **Figure 1**: Figure depicting how leveraging an API Gateway in front of your services in diagram (2) allows you to configure security such as TLS at the Gateway level to protect your services. |
+|                                                                                                                                                                                                   |
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ This guide is written for OSX, however it is applicable for any linux/unix based
 
 Suppose we are developing on **localhost**, and I want to generate a wildcard certificate that encompasses **\*.localhost**. It's not possible to issue wildcard certificates for top level domains - [reference here](https://stackoverflow.com/questions/68514712/what-is-the-correct-way-to-generate-a-selfsigned-cert-for-localhost-wildcard). Thus today we will be generating a wildcard certificate for a subdomain of localhost, say for example **\*.tyk.localhost**.
 
-First, we need to edit our /etc/hosts file such that we can use DNS resolution to map some hostname to an IP address.
+First, we need to edit our /etc/hosts file such that we can use DNS resolution to map some hostnames to an IP address.
 
 ```bash
 sudo vi /etc/hosts
@@ -750,4 +750,4 @@ We have all the components configured so now we can serve application(s) through
   ```
 </details>
 
-Well done! We've taken an existing service [http://httpbin.org](http://httpbin.org) and now we've managed it through Tyk at [https://httpbin.tyk.localhost](https://httpbin.tyk.localhost). You can imagine that instead of `httpbin.org`, we can substitute it with a service running locally either by IP address or an existing public service that is hosted on a cloud provider such as AWS, GCP or Azure!
+Well done! We've taken an existing service [http://httpbin.org](http://httpbin.org) and now we've managed it through Tyk at [https://httpbin.tyk.localhost](https://httpbin.tyk.localhost). You can imagine that instead of `httpbin.org`, we can substitute it with a service running locally either by IP address or an existing public service that is hosted on a cloud provider such as AWS, GCP or Azure! Using an API Gateway in this manner allows for greater separation of concerns. I can focus on simply developing my services- while delegating the hard tasks of access control and security to the [open source Tyk-Gateway](https://github.com/TykTechnologies/tyk), a product that has been battle hardened, tested and trusted by enterprises across the globe.

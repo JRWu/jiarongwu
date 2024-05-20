@@ -3,7 +3,7 @@ export default function Resume() {
   return (
     <div>
       <embed
-        src="/static/documents/jiawu_resume_2023.pdf"
+        src="/static/documents/JiaRongWu_CV_2024.pdf"
         type="application/pdf"
         width="100%"
         height="1000px"

@@ -11,6 +11,12 @@ const projectsData = [
     imgSrc: '/static/images/AUSPRE.png',
     href: '/blog/auspre',
   },
+  {
+    title: 'Custom Plugins @ Tyk',
+    description: `Custom Go Plugins. A repository I authored to accelerate the velocity of customer evaluations.`,
+    imgSrc: '/static/images/tyk-customgoplugin-repo/Tyk.png',
+    href: '/blog/tyk-custom-go-plugin',
+  },
 ]
 
 export default projectsData

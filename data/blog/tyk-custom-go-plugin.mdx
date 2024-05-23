@@ -1,0 +1,27 @@
+---
+title: 'Engineering Custom Go Plugins'
+date: '2024-01-08'
+tags: ['solutions', 'go plugins', 'tyk', 'software engineering', 'docker']
+draft: false
+summary: 'Accelerating customer evaluations.'
+---
+
+# Towards the Acceleration of Customer Evaluations
+
+Proof of Concepts are a hard requirement for most organizations looking to procure new software. Companies are often presented with the dilemma of build vs buy. It gets complicated for an organization to choose to buy software - especially if they are forced to adapt to a new process that might not be familiar to their developers or to their customers.
+
+For example, suppose you're a CTO of a company that sells data in the form of API calls. Your clients may be used to consuming your data in a specific format, with specific authentication protocols in place. At the same time, your business is growing, and you find yourself needing to consolidate your public-facing APIs into a way that is manageable and scalable. Do you proceed with purchasing an API management platform if you know that it might force your clients to migrate?
+
+With this uncertainty in mind, it can inhibit and prevent procurement entirely. As a solutions engineer-this is a problem, as it's my best interest to ensure that my solution can address the pain points and problems of my customers. For this reason, I authored the [Custom-Go-Plugin](https://github.com/TykTechnologies/custom-go-plugin) repository that allows customers to engineer and compile business logic that can be injected into Tyk at any stage of the [middleware execution order](https://tyk.io/docs/concepts/middleware-execution-order/).
+
+In layman's terms, this work makes it possible for a prospective customer evaluating Tyk to add custom Go code as a hook into the API requests that run through Tyk. It provides an easy Makefile based approach to compiling, bundling and shipping plugins that accelerate the evaluation of Tyk for customers with hard requirements relating to custom logic. Previously, one needed to be familiar with both Go code development and the Tyk platform in order to effectively develop plugins. Now, you can add business logic, compile and ship your solution within 2 commands- `make` and `make bundle`.
+
+|                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <Image alt="CustomGoPluginFlow" src="/static/images/tyk-customgoplugin-repo/custom-go-plugin-flow.png" width={946} height={604} />                                                                                                   |
+| **Figure 1**: Diagram illustrating the flow. 1: Developers write code representing a legacy Auth system using my repository. 2: Code is compiled and loaded onto a Tyk Gateway. 3: API Consumers access APIs using this Custom Auth. |
+|                                                                                                                                                                                                                                      |
+
+Circling back to the CTO example, you now have a vendor that not only enables the management of your core APIs, but also provides a way for you to address the edge cases you may run into.
+
+TLDR: By providing a fully featured software development environment that compliments both Open Source and Licensed Tyk installations, I increased the velocity of customer evaluations, reduced the effort required to maintain software and enabled more revenue by unblocking deals.

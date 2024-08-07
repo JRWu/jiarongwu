@@ -8,7 +8,13 @@ export default function Resume() {
         width="100%"
         height="600px"
       >
-        <p> Your web browser does not have a PDF plugin. </p>
+        <p>
+          {' '}
+          Your browser cannot render this PDF:{' '}
+          <a href="https://github.com/JRWu/cv/raw/main/JiaRongWu_CV_2024.pdf">
+            Download Resume Here
+          </a>{' '}
+        </p>
       </object>
     </div>
   )
